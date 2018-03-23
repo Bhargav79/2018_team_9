@@ -5,7 +5,7 @@ export default async (req, res) => {
   const category = req.query.category;
   const subCategory = req.query.subCategory;
   const nutritionalInfo = await fetchInfo(upc);
-  const score = rules({
+  const score = await rules({
     ...nutritionalInfo,
     subCategory,
     category

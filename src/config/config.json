@@ -5,5 +5,8 @@
   "nutritionix": {
     "appId": "a7ed3e84",
     "appKey": "478f689be574f6434339b73baf872eee"
+  },
+  "rules": {
+    "url": "http://localhost:9000/score"
   }
 }
