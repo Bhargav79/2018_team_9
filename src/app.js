@@ -1,10 +1,18 @@
 import express from 'express';
 import rules from './rules';
-import fetch from './fetchInfo';
+import fetchInfo from './fetchInfo';
 
 const app = express();
+const handler = async (req, res) => {
+  const upc=req.query.upc;
+  const category=req.query.category;
+  const subCategory=req.query.subCategory;
+  const nutritionalInfo = await fetchInfo(upc);
+  const score = rules({...nutritionalInfo,subCategory,category});
+  res.send({...score,upc});
+};
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', handler);
 
 const port = process.env.PORT || 3000;
 app.listen(port);
