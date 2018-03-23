@@ -1,5 +1,4 @@
 import fetch from "node-fetch"
-import querystring from "querystring"
 import config from '../config/config'
 import parseRawResult from './convertNutritionixToNutritionInfo'
 
