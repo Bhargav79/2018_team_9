@@ -1,11 +1,15 @@
 import rules from './rules';
-import fetchInfo from './nutritionix/fetchNutritionInfo';
+import fetchInfo from './getNutritionalInformation';
 export default async (req, res) => {
   const upc = req.query.upc;
   const category = req.query.category;
   const subCategory = req.query.subCategory;
+  
+  //Call nutrition orchestration to pull data from usda or nutrix apis
   const nutritionalInfo = await fetchInfo(upc);
-  const score = await rules({
+  
+  //Call the rules engine, retrieve score and send back to calling application
+  /*const score = await rules({
     ...nutritionalInfo,
     subCategory,
     category
@@ -16,5 +20,6 @@ export default async (req, res) => {
     category,
     subCategory,
     nutritionalInfo
-  });
+  });*/
+  res.send({nutritionalInfo});
 };
