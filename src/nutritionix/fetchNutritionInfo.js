@@ -3,13 +3,30 @@ import querystring from "querystring"
 import config from '../config/config'
 import parseRawResult from './convertNutritionixToNutritionInfo'
 
+let nutrientArray=[];
+let headers =  {"x-app-id":config.nutritionix.appId,"x-app-key":config.nutritionix.appKey};
+
+async function  getNutrientMap(){
+  if(nutrientArray.length ===0){
+     nutrientArray = await fetch(`${config.nutritionix.apiBaseUrl}utils/nutrients`).then(res => res.json())
+  }
+  return nutrientArray
+}
 
 export default async (upc) => {
-  const url = `https://api.nutritionix.com/v1_1/item?upc=${upc}&appId=${config.nutritionix.appId}&appKey=${config.nutritionix.appKey}`;
-  const rawResult = await fetch(url).then(res => res.json());
+  const rawResult= await fetch(`${config.nutritionix.apiBaseUrl}search/item?upc=${upc}`, {headers: headers}).then(res => res.json())
+  const nutrientMap = await getNutrientMap();
   if (rawResult.status_code === 404) {
     return undefined;
   } else {
-    return parseRawResult(rawResult);
+    return parseRawResult(mapAttrIdToNutrientName(rawResult,nutrientMap));
   }
 };
+
+function mapAttrIdToNutrientName(rawResult, nutrientMap) {
+  //todo:: Implement Nutrient map to Attr nutrient ids returned from 2.0 api
+  return rawResult
+}
+
+
+
