@@ -9,7 +9,7 @@ export default async (req, res) => {
   //Call the rules engine, retrieve score and send back to calling application
   res.send({
     nutritionalInfo,
-    qurey: req.query,
+    query: req.query,
     upc
   });
 };
