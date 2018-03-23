@@ -1,3 +1,4 @@
+//no longer used
 import fetch from "node-fetch"
 import config from './config/config'
 

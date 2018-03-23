@@ -1,26 +1,30 @@
 export default async (raw) => {
   const nutrientsArr = raw.report.food.nutrients;
-  const sugarObj = nutrientsArr.filter(function(e, i) {
-    return e.nutrient_id == 269;
-  });
-  var sugar;
-  switch (sugarObj.unit)
-  {
-    case "g":
-      sugar = sugarObj.value * 1000;
-      break;
-    case "mg":
-    default:
-      sugar = sugarObj.value;
-      break;
-  }
-  
+  const convertValue = (obj) => {
+    switch (obj.unit) {
+      case 'g':
+        return obj.value * 1000;
+      case 'kcal':
+      case 'mg':
+      default:
+        return obj.value;
+    }
+  };
+  const findNutrient = (id) => {
+    const nutrientObject = nutrientsArr.filter((e) => {
+      return e.nutrient_id == 269;
+    });
+    return convertValue(nutrientObject);
+  };
+
   return {
-    sugar: raw.report.food.nutrients.nf_sugars,
-    sodium: raw.foods[0].nf_sodium,
-    fat: raw.foods[0].nf_total_fat,
-    protein: raw.foods[0].nf_protein,
-    fiber: raw.foods[0].nf_dietary_fiber,
-    ...raw.foods[0],
-    full_nutrients: null
-}};
+    sugar: findNutrient(269),
+    sodium: findNutrient(307),
+    fat: findNutrient(204),
+    protein: findNutrient(203),
+    fiber: findNutrient(291),
+    fat_saturated: findNutrient(606),
+    calories: findNutrient(208),
+    raw: raw.report.food,
+  }
+};
