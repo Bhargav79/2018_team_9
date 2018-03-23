@@ -1,4 +1,4 @@
-#interfaces
+# Contracts
 
 ## Rating Module
 calculates a nutrition score based on nutritional info. Takes a fully formed `nutritionalInfo` object and returns a fully formed `score` object.
@@ -21,6 +21,7 @@ export default (upc) => {
 ```
 
 ## Example `nutritionalInfo` object
+All units are in milligrams
 ```
 {
   "category": "Starch",
