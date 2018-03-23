@@ -1,6 +1,14 @@
-# Contracts
+# Fetch nutritional info
+This is a web-service which accepts a upc and category in query parameters and returns json.
+
+Example call:
+```
+//tbd
+
+```
 
 ## Rating Module
+This service is dependent upon a rules engine endpoint. The url is configured in `config/config.json`. see https://github.com/dsmHack/2018-dmarc-rules-engine
 calculates a nutrition score based on nutritional info. Takes a fully formed `nutritionalInfo` object and returns a fully formed `score` object.
 ```
 export default (nutritionalInfo) => {
@@ -11,6 +19,7 @@ export default (nutritionalInfo) => {
 ```
 
 ## Fetch Module
+
 pulls nutrition info from third party sources. Returns either undefined, or a fully formed `nutritionalInfo`.
 ```
 export default (upc) => {
@@ -21,30 +30,17 @@ export default (upc) => {
 ```
 
 ## Example `nutritionalInfo` object
-All units are in milligrams
+see https://docs.google.com/spreadsheets/d/1iPnCfN8zQySS-zZzUeXFGD0EdGRzYT3RinefIcEDCRo/edit#gid=1415619299 *tab 2*
 ```
 {
   "category": "Starch",
-  "subCategory": "Rice",
-  "sodium":"10"
-  "sugar":"20"
-  "fat": "30"
+  "sodium": 10,
+  "sugar": 20,
+  "fat": 30,
+  "protein": 40,
+  "fiber": 50
 }
 ```
-
-Valid categories:
- - Tomatoes
- - Canned Beans
- - Vegetables
- - Fruits
- - Protein
- - Pasta/Rice
- - Pasta Sauce
- - Cereal
-
- Valid sub-categories:
-  - Fresh
-  - Canned
 
 ## Example `score` object
  ```
