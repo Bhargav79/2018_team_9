@@ -1,5 +1,5 @@
 export default async (raw) => ({
-  sugar: raw.nf_sugars,
-  sodium: raw.nf_sodium,
-  fat: raw.nf_total_fat,
+  sugar: raw.foods[0].nf_sugars,
+  sodium: raw.foods[0].nf_sodium,
+  fat: raw.foods[0].nf_total_fat,
 });
