@@ -4,12 +4,20 @@ import fetchInfo from './fetchInfo';
 
 const app = express();
 const handler = async (req, res) => {
-  const upc=req.query.upc;
-  const category=req.query.category;
-  const subCategory=req.query.subCategory;
+  const upc = req.query.upc;
+  const category = req.query.category;
+  const subCategory = req.query.subCategory;
   const nutritionalInfo = await fetchInfo(upc);
-  const score = rules({...nutritionalInfo,subCategory,category});
-  res.send({...score,upc});
+  const score = rules({ ...nutritionalInfo,
+    subCategory,
+    category
+  });
+  res.send({
+    score,
+    upc,
+    category,
+    subCategory
+  });
 };
 
 app.get('/', handler);
