@@ -13,6 +13,7 @@ export default async (req, res) => {
     score,
     upc,
     category,
-    subCategory
+    subCategory,
+      nutritionalInfo
   });
 };
