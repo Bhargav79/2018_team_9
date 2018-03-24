@@ -4,8 +4,8 @@
   "api_key": "",
   "nutritionix": {
     "apiBaseUrl":"https://trackapi.nutritionix.com/v2/",
-    "appId": "721dd9b0",
-    "appKey": "ca207a8bd32eb2ac1f1c043a7c4eb33f"
+    "appId": "ea1c61e5",
+    "appKey": "cba91d05dc983be15e22eed2f5b93620"
   },
   "usda": {
     "apiBaseUrl": "https://api.nal.usda.gov/ndb/search/",

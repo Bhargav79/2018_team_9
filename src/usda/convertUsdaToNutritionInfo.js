@@ -1,6 +1,9 @@
 export default async (raw) => {
   const nutrientsArray = raw.report.food.nutrients;
   const convertValue = (obj) => {
+    if (!obj) {
+      return 0;
+    }
     switch (obj.unit) {
       case 'g':
         return obj.value * 1000;
@@ -10,9 +13,18 @@ export default async (raw) => {
         return obj.value * 1;
     }
   };
+  const convertWithDefault = (obj) => {
+    const tempValue = convertValue(obj);
+    if (!tempValue) {
+      return 0;
+
+    } else {
+      return tempValue;
+    }
+  }
   const findNutrient = (id) => {
     const nutrientObject = nutrientsArray.find((e) => e.nutrient_id == id);
-    return convertValue(nutrientObject);
+    return convertWithDefault(nutrientObject);
   };
 
   return {
