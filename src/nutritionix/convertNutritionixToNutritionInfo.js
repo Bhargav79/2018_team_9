@@ -15,7 +15,8 @@ export default async (raw) => {
     fiber: wrapWithDefaultValue(raw.foods[0].nf_dietary_fiber),
     fat_saturated: wrapWithDefaultValue(raw.foods[0].nf_saturated_fat),
     calories: wrapWithDefaultValue(raw.foods[0].nf_calories),
-    raw: wrapWithDefaultValue(raw.foods[0])
+    raw: wrapWithDefaultValue(raw.foods[0]),
+    productName: `${raw.foods[0].food_name} - ${raw.foods[0].brand_name}`
   };
   console.log(ret);
   return ret;
