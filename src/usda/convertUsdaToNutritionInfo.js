@@ -1,16 +1,17 @@
 export default async (raw) => {
   const nutrientsArray = raw.report.food.nutrients;
   const convertValue = (obj) => {
-    if (!obj) {
+    if (!obj || !obj.measures) {
       return 0;
     }
-    switch (obj.unit) {
+    const measure = obj.measures.find(() => true);
+    switch (measure.eunit) {
       case 'g':
-        return obj.value * 1000;
+        return measure.value * 1000;
       case 'kcal':
       case 'mg':
       default:
-        return obj.value * 1;
+        return measure.value * 1;
     }
   };
   const convertWithDefault = (obj) => {
