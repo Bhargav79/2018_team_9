@@ -1,11 +1,13 @@
 {
-  "baseUrl": "",
-  "format": "",
-  "api_key": "",
   "nutritionix": {
-    "apiBaseUrl":"https://trackapi.nutritionix.com/v2/",
-    "appId": "ea1c61e5",
-    "appKey": "cba91d05dc983be15e22eed2f5b93620"
+    "apiBaseUrl": "https://trackapi.nutritionix.com/v2/",
+    "fetchOptions": {
+      "timeout": 5000,
+      "headers": {
+        "x-app-id": "ea1c61e5",
+        "x-app-key": "cba91d05dc983be15e22eed2f5b93620"
+      }
+    }
   },
   "usda": {
     "apiBaseUrl": "https://api.nal.usda.gov/ndb/search/",
@@ -13,9 +15,9 @@
     "apiKey": "vOXgi2JypetmVvVEILas1K7rVieqQgr01nUptK19",
     "format": "json",
     "max": 25,
-    "offset": 0
-  },
-  "rules": {
-    "url": "http://localhost:9000/score"
+    "offset": 0,
+    "fetchOptions": {
+      "timeout": 5000
+    }
   }
 }
