@@ -4,8 +4,11 @@ export default async (raw) => {
     if (!obj || !obj.measures) {
       return 0;
     }
+    // https://ndb.nal.usda.gov/ndb/foods/show/46985?fgcd=&manu=&lfacet=&format=&count=&max=50&offset=&sort=default&order=asc&qlookup=074873163230&ds=&qt=&qp=&qa=&qn=&q=&ing=
     const measure = obj.measures.find(() => true);
-    switch (measure.eunit) {
+    // use units from the nutrient and not from measure.eunit
+    // measure.eunit is unit for measure.eqv
+    switch (obj.unit) {
       case 'g':
         return measure.value * 1000;
       case 'kcal':
