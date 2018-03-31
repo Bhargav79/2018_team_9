@@ -37,6 +37,7 @@ export default async (raw) => {
     fat_saturated: findNutrient(606),
     calories: findNutrient(208),
     productName: raw.report.food.name,
+    brandName: '',
     raw: raw.report.food
   }
 };
